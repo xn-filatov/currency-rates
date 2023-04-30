@@ -1,5 +1,6 @@
 const express = require("express");
 const axios = require("axios");
+const cors = require("cors");
 
 const { sequelize } = require("./database/sequelize");
 const { User } = require("./database/Models/User");
@@ -14,19 +15,30 @@ const port = process.env.PORT || 3000;
 const baseApiUrl = process.env.BASE_API_URL;
 const apikey = process.env.API_KEY;
 
+app.use(cors({ origin: "*" }));
+
 app.post("/users/:login/:password", async (req, res) => {
   const { login, password } = req.params;
 
-  const users = await User.findAll();
-  if (users.some((x) => x.login == login))
-    return res.status(500).send("User with this login already exists");
+  try {
+    const [user, isCreated] = await User.findOrCreate({
+      where: { login: login },
+      defaults: { login: login, password: password },
+    });
 
-  const newUser = await User.create({
-    login: login,
-    password: password,
-  });
+    if (!isCreated && user.password != password) {
+      return res.status(403).send("Wrong password!");
+    }
 
-  res.send({ ...newUser, token: generateAccessToken(login) });
+    res.send({ ...user, token: generateAccessToken(login) });
+  } catch (error) {
+    res.status(500).send("Internal error");
+    console.log(error);
+  }
+});
+
+app.get("/users/checkToken", authenticateToken, async (req, res) => {
+  res.sendStatus(200);
 });
 
 app.get("/convert/:from/:to", authenticateToken, async (req, res) => {
