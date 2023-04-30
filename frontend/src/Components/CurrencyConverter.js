@@ -3,12 +3,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import currencyList from "../Static/currencyList.json";
 
-function CurrencyConverter() {
+function CurrencyConverter(props) {
+  const { currencyFrom, setCurrencyFrom } = props;
   const [cookies] = useCookies(["token"]);
   const [amountToConvert, setAmountToConvert] = useState(1000);
   const [convertedAmount, setConvertedAmount] = useState(0);
   const [exchangeRate, setExchangeRate] = useState(0);
-  const [currencyFrom, setCurrencyFrom] = useState("USD");
   const [currencyTo, setCurrencyTo] = useState("EUR");
 
   useEffect(() => {
