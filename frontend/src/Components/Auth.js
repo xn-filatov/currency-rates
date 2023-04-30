@@ -22,9 +22,10 @@ function Auth(props) {
       onSubmit={(values, { setSubmitting }) => {
         setSubmitting(false);
         axios
-          .post(
-            `${process.env.REACT_APP_BACKEND_URL}/users/${values.login}/${values.password}`
-          )
+          .post(`${process.env.REACT_APP_BACKEND_URL}/users`, {
+            login: values.login,
+            password: values.password,
+          })
           .then((res) => {
             setCookie("token", res.data.token, { path: "/" });
             setHasToken(true);

@@ -21,9 +21,9 @@ function TodaysRate(props) {
   const currenciesList =
     currencies &&
     Object.keys(currencies).map((key) => (
-      <p>
+      <div key={key}>
         {key} {currencies[key].toFixed(4)}
-      </p>
+      </div>
     ));
 
   return (
@@ -33,7 +33,9 @@ function TodaysRate(props) {
         style={{ backgroundColor: "darkblue", color: "white" }}
       >
         <div className="col">Todays's rates</div>
-        <div className="col text-left">1 {currencyFrom} = </div>
+        <div className="col" style={{ textAlign: "left" }}>
+          <p> 1 {currencyFrom} =</p>
+        </div>
       </div>
       <div>{currenciesList}</div>
     </div>

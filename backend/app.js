@@ -17,8 +17,11 @@ const apikey = process.env.API_KEY;
 
 app.use(cors({ origin: "*" }));
 
-app.post("/users/:login/:password", async (req, res) => {
-  const { login, password } = req.params;
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.post("/users", async (req, res) => {
+  const { login, password } = req.body;
 
   try {
     const [user, isCreated] = await User.findOrCreate({
