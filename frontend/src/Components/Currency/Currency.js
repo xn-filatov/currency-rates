@@ -1,7 +1,7 @@
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
-import Converter from "./Converter";
-import HistoricalRates from "./HistoricalRates";
+import "./Currency.scss";
+import Converter from "../Converter";
+import HistoricalRates from "../HistoricalRates/HistoricalRates";
 import { useState } from "react";
 
 function Currency(props) {
@@ -9,13 +9,12 @@ function Currency(props) {
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
 
   return (
-    <div className="col-sm-6 col-md-8 border border-secondary">
-      <Tabs>
-        <TabList>
+    <div className="col-8 border border-secondary px-0">
+      <Tabs className="currency">
+        <TabList className="pt-1">
           <Tab>Currency converter</Tab>
           <Tab>Historical rates</Tab>
         </TabList>
-
         <TabPanel>
           <Converter
             currencyFrom={currencyFrom}

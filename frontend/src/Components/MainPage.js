@@ -1,4 +1,4 @@
-import Currency from "./Currency";
+import Currency from "./Currency/Currency";
 import TodaysRate from "./TodaysRate";
 import { useState } from "react";
 
@@ -8,7 +8,7 @@ function MainPage() {
 
   return (
     <div className="container mt-5">
-      <div className="row g-0">
+      <div className="row justify-content-around">
         <Currency
           currencyFrom={currencyFrom}
           setCurrencyFrom={setCurrencyFrom}

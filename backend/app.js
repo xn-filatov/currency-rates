@@ -99,11 +99,13 @@ app.get(
       const dateTo = new Date();
       const dateFrom = new Date();
 
+      dateTo.setDate(new Date().getDay() - 1);
+
       dateFrom.setMonth(new Date().getMonth() - span);
+      dateFrom.setDate(new Date().getDay() - 1);
 
       const dateToFormatted = formatDate(dateTo);
       const dateFromFormatted = formatDate(dateFrom);
-
       let config = {
         headers: { apikey: apikey },
         params: {

@@ -1,4 +1,7 @@
 import { Tab, Tabs, TabList } from "react-tabs";
+import "./HistoricalRates.scss";
+
+// import "react-tabs/style/react-tabs.css";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -85,6 +88,7 @@ function HistoricalRates(props) {
 
   return (
     <Tabs
+      className={"historical"}
       selectedIndex={selectedTabIndex}
       onSelect={(tabIndex) => setSelectedTabIndex(tabIndex)}
     >

@@ -34,15 +34,20 @@ function Auth(props) {
       }}
     >
       {({ isSubmitting }) => (
-        <Form style={{ marginTop: "10%" }}>
-          <label>Login:</label>
-          <Field type="login" name="login" />
-          <ErrorMessage name="login" component="div" />
-          <label>Password:</label>
-          <Field type="password" name="password" />
-          <ErrorMessage name="password" component="div" />
-          <button type="submit" disabled={isSubmitting}>
-            Submit
+        <Form style={{ width: "10%" }} className="container mt-5">
+          <div className="row">
+            <label>Login:</label>
+            <Field type="login" name="login" />
+            <ErrorMessage name="login" component="div" />
+          </div>
+          <div className="row">
+            <label>Password:</label>
+            <Field type="password" name="password" />
+            <ErrorMessage name="password" component="div" />
+          </div>
+
+          <button className="mt-2" type="submit" disabled={isSubmitting}>
+            Sign in
           </button>
         </Form>
       )}

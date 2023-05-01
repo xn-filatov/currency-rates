@@ -4,7 +4,7 @@ function formatDate(date) {
   const year = date.getFullYear();
   // Add 1 to month since it's zero-indexed
   const month = date.getMonth() + 1;
-  const day = date.getDate() - 1;
+  const day = date.getDate();
 
   return `${year}-${month.toString().padStart(2, "0")}-${day
     .toString()

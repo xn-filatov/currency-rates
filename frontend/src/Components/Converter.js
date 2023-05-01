@@ -36,7 +36,7 @@ function Converter(props) {
     <div className="mx-3">
       <p>From</p>
       <div className="row">
-        <div className="col">
+        <div className="col-3">
           <input
             type="number"
             defaultValue={amountToConvert}
@@ -46,21 +46,21 @@ function Converter(props) {
             }}
           />
         </div>
-        <div className="col">
+        <div className="col-9">
           <select
             defaultValue={currencyFrom}
             onChange={(e) => setCurrencyFrom(e.target.value)}
           >
-            {currencyOptions}{" "}
+            {currencyOptions}
           </select>
         </div>
       </div>
       <p>To</p>
       <div className="row">
-        <div className="col">
+        <div className="col-3">
           <input type="number" value={convertedAmount} disabled={true} />
         </div>
-        <div className="col">
+        <div className="col-9">
           <select
             defaultValue={currencyTo}
             onChange={(e) => setCurrencyTo(e.target.value)}
@@ -70,13 +70,12 @@ function Converter(props) {
         </div>
       </div>
       <hr />
+
+      <div>Your rate:</div>
       <div>
-        <p>Your rate</p>
-        <p>
-          {currencyFrom} 1 = {`${currencyTo} ${exchangeRate.toFixed(4)}`}
-        </p>
-        <p>Last update 2018 Nov 26 18:11:04</p>
+        {currencyFrom} 1 = {`${currencyTo} ${exchangeRate.toFixed(4)}`}
       </div>
+      <div>Last update 2023 May 1 16:12:04</div>
     </div>
   );
 }

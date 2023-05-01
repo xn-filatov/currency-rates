@@ -20,24 +20,27 @@ function TodaysRate(props) {
 
   const currenciesList =
     currencies &&
-    Object.keys(currencies).map((key) => (
-      <div key={key}>
-        {key} {currencies[key].toFixed(4)}
+    Object.keys(currencies).map((key, i, arr) => (
+      <div className="row px-5" key={key}>
+        <div className="col"> {key}</div>
+        <div className="col" style={{ textAlign: "right" }}>
+          <p>{currencies[key].toFixed(4)}</p>
+        </div>
+        {i < arr.length - 1 && <hr />}
       </div>
     ));
 
   return (
-    <div className="col-6 col-md-4 border border-secondary">
-      <div
-        className="row"
-        style={{ backgroundColor: "darkblue", color: "white" }}
-      >
-        <div className="col">Todays's rates</div>
-        <div className="col" style={{ textAlign: "left" }}>
-          <p> 1 {currencyFrom} =</p>
+    <div className="col-3 border border-secondary  px-0">
+      <div style={{ backgroundColor: "darkblue", color: "white" }}>
+        <div className="container row py-2">
+          <div className="col">Todays's rates</div>
+          <div className="col" style={{ textAlign: "right" }}>
+            1 {currencyFrom} =
+          </div>
         </div>
       </div>
-      <div>{currenciesList}</div>
+      <div className="mt-2">{currenciesList}</div>
     </div>
   );
 }
